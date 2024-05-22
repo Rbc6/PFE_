@@ -1,0 +1,60 @@
+<div class="w-100 title-dialog">
+  <H2>Modifier un Médicin</H2>
+  <hr>
+</div>
+
+
+<div mat-dialog-content class="dialog-user">
+  <form >
+      <div class="row mb-1">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-xs-3 mb-sm-3">
+              <div class="row">
+                <div class="col">
+                  <mat-form-field appearance="outline">
+                      <mat-label>Prénom</mat-label>
+                      <input type="text"  name="prenom" [(ngModel)]="doctor.prenom" matInput placeholder="prenom">
+                  </mat-form-field>
+              </div>
+                  <div class="col">
+                      <mat-form-field appearance="outline">
+                          <mat-label>Nom</mat-label>
+                          <input name="nom" [(ngModel)]="doctor.nom" matInput placeholder="nom">
+                      </mat-form-field>
+                  </div>
+
+              </div>
+              <div class="row">
+                  <div class="col">
+                      <mat-form-field appearance="outline">
+                          <mat-label>email</mat-label>
+                          <input name="email" [(ngModel)]="doctor.email" matInput placeholder="email">
+                      </mat-form-field>
+                  </div>
+                  <div class="col">
+                      <mat-form-field appearance="outline">
+                          <mat-label>numeroTelephone</mat-label>
+                          <input name="numeroTelephone" [(ngModel)]="doctor.numeroTelephone" matInput placeholder="numeroTelephone">
+                      </mat-form-field>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col">
+                      <mat-form-field appearance="outline">
+                          <mat-label>adresse</mat-label>
+                          <input name="adresse" [(ngModel)]="doctor.adresse" matInput placeholder="adresse">
+                      </mat-form-field>
+                  </div>
+                  <div class="col">
+
+                  </div>
+              </div>
+
+          </div>
+      </div>
+  </form>
+
+  <div class="row dialog-action">
+      <button mat-raised-button class="btn-save btn-dialog-action" (click)="onSubmit()" color="primary">Modifier</button>
+      <button mat-raised-button class="btn-cancel btn-dialog-action" color="warn" mat-dialog-close>Annuler</button>
+  </div>
+</div>

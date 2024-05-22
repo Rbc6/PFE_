@@ -1,0 +1,120 @@
+
+
+<div class="div-main">
+  <div class="title-page">
+    <h2 style="color: #2eb165">Dashboard</h2>
+  </div>
+
+  <div>
+    <div style="overflow-x: hidden">
+      <div class="row">
+        <div class="col">
+          <div
+            class="card radius-10 border-start border-0 border-3 border-info cardDash"
+          >
+            <div class="card-body">
+              <div class="d-flex align-items-center">
+                <div>
+                  <p class="mb-0 text-secondary">Total Dossier</p>
+
+                </div>
+                <div
+                  class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"
+                >
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div
+            class="card radius-10 border-start border-0 border-3 border-danger cardDash"
+          >
+            <div class="card-body">
+              <div class="d-flex align-items-center">
+                <div>
+                  <p class="mb-0 text-secondary">Total Médcin</p>
+
+                </div>
+                <div
+                  class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"
+                >
+{{allDispo?.length}}
+<span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div
+            class="card radius-10 border-start border-0 border-3 border-success cardDash"
+          >
+            <div class="card-body">
+              <div class="d-flex align-items-center">
+                <div>
+                  <p class="mb-0 text-secondary">Total Rendez vous</p>
+
+                </div>
+                <div
+                  class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"
+                >
+{{allRendezVous?.length}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div
+            class="card radius-10 border-start border-0 border-3 border-warning cardDash"
+          >
+            <div class="card-body">
+              <div class="d-flex align-items-center">
+                <div>
+                  <p class="mb-0 text-secondary">Total Utilisateurs</p>
+
+                </div>
+                <div
+                  class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"
+                >
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="chartBar">
+            <canvas id="myChart"></canvas>
+          </div>
+        </div>
+        <div class="col-md-3 pie">
+          <div class="chartPie card">
+            <h3 class="card-title">Les rendez vous pas Status</h3>
+            <div class="card-body">
+              <canvas id="myPie"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 pie">
+          <div class="chartPie card">
+            <h3 class="card-title">Les rendez vous pas Type</h3>
+            <div class="card-body">
+              <canvas id="myPieTwo"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="chartBar2">
+            <canvas id="myChartTwo"></canvas>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

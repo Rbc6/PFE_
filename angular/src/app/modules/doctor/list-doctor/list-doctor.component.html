@@ -1,0 +1,138 @@
+<div class="div-main">
+    <div class="title-page">
+        <h2>Liste Médcins</h2>
+
+    </div>
+    <div style="padding: 15px;">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <h5 class="card-title">Liste des médicins <span
+                            class="text-muted fw-normal ms-2">({{doctors?.length}})</span>
+                    </h5>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-3">
+                    <div>
+                        <mat-form-field style=" width: 400px;">
+                            <mat-label>Recherche</mat-label>
+                            <input type="text" matInput name="searchTerm"  placeholder="Ex. 123456" style="height: 100% ;">
+
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <button pButton pRipple label="Ajouter" (click)="openDialogAddDoc()" style="background-color: #2eb165;"  icon="pi pi-plus"
+                        class="p-button-success p-button-rounded"></button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="">
+                    <div class="table-responsive">
+                        <table class="table project-list-table table-nowrap align-middle table-borderless">
+                            <thead>
+                                <tr>
+
+                                    <th scope="col">Pénom nom</th>
+                                    <th scope="col">Numero</th>
+                                    <th scope="col">Spécialités</th>
+
+                                    <th scope="col">Email</th>
+                                    <th scope="col" style="width: 200px;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let doctor of doctors">
+
+                                    <td><img src="../../../../../assets/images/doctor.png"
+                                            alt="" class="avatar-sm rounded-circle me-2" /><a
+                                            class="text-body">{{capitalizeFirstLetter(doctor.name)}} </a></td>
+                                    <td>{{doctor.code}}</td>
+                                    <td>
+                                        <div *ngFor="let i of doctor.specialiteMedicales" >
+
+                                            <div class="badge badge-soft-primary mb-0">
+                                                {{i}}
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <span class="badge badge-soft-success mb-0" >
+                                            <td><i class="bi bi-envelope-fill"></i> {{doctor.email}}</td>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <button pButton (click)="openDialogEditDoc(doctor)"  icon="pi pi-pencil" class="p-button-rounded"
+                                        severity="secondary"></button>
+                                      <button pButton icon="pi pi-trash" (click)="delete(doctor.id)" style="margin-left: 2px;"
+                                        class="p-button-rounded p-button-danger" severity="secondary"></button>
+                                        <button pButton icon="pi pi-eye" style="margin-left: 2px;"
+                                        class="p-button-rounded" severity="secondary" (click)="openDialogJours(doctor)"></button>
+                                    </td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="row g-0 align-items-center pb-4">
+            <div class="col-sm-6">
+                <div>
+                    <p class="mb-sm-0">Showing 1 to 10 of 57 entries</p>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="float-sm-end">
+                    <ul class="pagination mb-sm-0">
+                        <li class="page-item disabled">
+                            <a href="#" class="page-link"><i class="mdi mdi-chevron-left"></i></a>
+                        </li>
+                        <li class="page-item active"><a href="#" class="page-link">1</a></li>
+                        <li class="page-item"><a href="#" class="page-link">2</a></li>
+                        <li class="page-item"><a href="#" class="page-link">3</a></li>
+                        <li class="page-item"><a href="#" class="page-link">4</a></li>
+                        <li class="page-item"><a href="#" class="page-link">5</a></li>
+                        <li class="page-item">
+                            <a href="#" class="page-link"><i class="mdi mdi-chevron-right"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div> -->
+    </div>
+</div>
+
+<!-- <div class="div-main">
+    <div class="title-page">
+        <h2>Liste Device</h2>
+
+    </div>
+
+    <div class="row custom-div-liste-user">
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12  user-list-container">
+            <div class="menu-table-user">
+
+
+
+
+            </div>
+
+
+
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mt-2">
+
+        </div>
+
+    </div>
+</div> -->

@@ -1,0 +1,125 @@
+<div class="w-100 title-dialog">
+  <H2>Ajouter un rendez vous</H2>
+  <hr />
+</div>
+
+<div mat-dialog-content class="dialog-user">
+  <form [formGroup]="rvezForm">
+    <div class="row mb-1">
+      <div
+        class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-xs-3 mb-sm-3"
+      >
+        <div class="row">
+          <div class="col">
+            <mat-form-field appearance="outline">
+              <mat-label>Date Time</mat-label>
+              <input
+                formControlName="dateTime"
+                type="datetime-local"
+                matInput
+                placeholder="dateTime"
+              />
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-select placeholder="Durée" formControlName="duree">
+                <mat-option value="DUREE_15"> DUREE_15 </mat-option>
+                <mat-option value="DUREE_30"> DUREE_30 </mat-option>
+                <mat-option value="DUREE_45"> DUREE_45 </mat-option>
+                <mat-option value="DUREE_60"> DUREE_60 </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-select
+                placeholder="Choisir un medecin"
+                formControlName="idDisMedcin"
+              >
+                <mat-option *ngFor="let dis of disDoc" [value]="dis.id">
+                  Doc : {{ dis.description }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-select
+                placeholder="Choisir un dispensaire"
+                formControlName="disponsaireId"
+              >
+                <mat-option [value]="i.id" *ngFor="let i of dispensaires">
+                  {{i.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+
+
+
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-select
+                placeholder="Type"
+                formControlName="typeRendezVous"
+              >
+                <mat-option value="CONSULTATION"> CONSULTATION </mat-option>
+                <mat-option value="ANALYSE"> ANALYSE </mat-option>
+                <mat-option value="RADIO"> RADIO </mat-option>
+                <mat-option value="AMBULATOIRE"> AMBULATOIRE </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field appearance="outline">
+              <mat-label>motif</mat-label>
+              <input formControlName="motif" matInput placeholder="motif" />
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-select
+                placeholder="Numero Dossier"
+                formControlName="numeroDossier"
+              >
+                <mat-option
+                  *ngFor="let dis of dossiers"
+                  [value]="dis.numero"
+                >
+                  {{ dis.nom }} {{ dis.prenom }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="row dialog-action">
+    <button
+      mat-raised-button
+      class="btn-save btn-dialog-action"
+      (click)="onSubmit()"
+      color="primary"
+    >
+      Ajout
+    </button>
+    <button
+      mat-raised-button
+      class="btn-cancel btn-dialog-action"
+      color="warn"
+      mat-dialog-close
+    >
+      Annuler
+    </button>
+  </div>
+</div>

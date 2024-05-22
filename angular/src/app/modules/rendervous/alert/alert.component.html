@@ -1,0 +1,44 @@
+<div class="div-main">
+  <div class="title-page">
+    <h2 style="color: #2eb165">Liste des alert</h2>
+  </div>
+
+  <div>
+    <p-table
+      [value]="alerts"
+      [paginator]="true"
+      [rows]="4"
+      [showCurrentPageReport]="true"
+      [tableStyle]="{ 'min-width': '50rem' }"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [rowsPerPageOptions]="[4, 8, 12, 16]"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Numéro</th>
+          <th>Prénom Nom</th>
+          <th>Dispensaire</th>
+          <th>Date</th>
+          <th>Action</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-alerts>
+        <tr>
+          <td>
+            <span class="badge badge-soft-primary">{{alerts.rendezVous.dossier.numero}}</span>
+          </td>
+          <td>
+            {{ alerts.rendezVous.dossier.prenom }}
+            {{ alerts.rendezVous.dossier.nom }}
+          </td>
+          <td>{{ alerts.dispensaire.name }}</td>
+          <td>{{ alerts.localDateTime | date : "yyyy-MM-dd HH:mm" }}</td>
+          <td>
+            <button pButton icon="pi pi-eye" style="margin-left: 2px;" (click)="goTo(alerts.rendezVous.dossier.id)"
+            class="p-button-rounded p-button-danger" severity="secondary"></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

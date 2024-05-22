@@ -1,0 +1,172 @@
+<div class="div-main">
+  <div class="title-page">
+    <h2>Dossier</h2>
+  </div>
+  <div style="padding: 15px">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="osahan-account-page-left shadow-sm bg-white h-100">
+            <div class="border-bottom p-4">
+              <div class="osahan-user text-center">
+                <div class="osahan-user-media">
+                  <img
+                    (click)="displayImage()"
+                    class="mb-3 rounded-pill shadow-sm mt-1"
+                    style="width: 90px; height: 90px; border: 3px solid #2eb165"
+                    [src]="image"
+                    alt="gurdeep singh osahan"
+                  />
+                  <div style="color: #2eb165; cursor: pointer">
+                    <mat-icon (click)="fileinput.click()">add_a_photo</mat-icon>
+                  </div>
+                  <input
+                    type="file"
+                    hidden
+                    #fileinput
+                    accept="image/*"
+                    (change)="onFileUpload($event)"
+                  />
+                  <div class="osahan-user-media-body">
+                    <h3 class="mb-2">
+                      {{ capitalizeFirstLetter(dossier?.prenom) }}
+                      {{ capitalizeFirstLetter(dossier?.nom) }}
+                      <span class="badge badge-soft-success">{{
+                        dossier?.numero
+                      }}</span>
+                    </h3>
+
+                    <div>
+                      <button
+                        (click)="openDialogEdit()"
+                        pButton
+                        style="background-color: #2eb165"
+                        icon="pi pi-pencil"
+                        class="p-button-rounded"
+                        severity="secondary"
+                      ></button>
+
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <ul
+              class="nav nav-tabs flex-column border-0 pt-4 pl-4 pb-4"
+              id="myTab"
+              role="tablist"
+            >
+              <li class="nav-item">
+                <a class="nav-link">
+                  <img
+                    style="width: 20px"
+                    src="../../../../assets/images/icon/adresse.jpg"
+                    alt=""
+                  />
+                  {{ capitalizeFirstLetter(dossier?.adresse) }}</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link">
+                  <img
+                    style="width: 20px"
+                    src="../../../../assets/images/icon/email.jpg"
+                    alt=""
+                  />
+                  {{ capitalizeFirstLetter(dossier?.email) }}</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link">
+                  <img
+                    style="width: 20px"
+                    src="../../../../assets/images/icon/phone.png"
+                    alt=""
+                  />
+                  {{ capitalizeFirstLetter(dossier?.telephone) }}</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link">
+                  <img
+                    style="width: 20px"
+                    src="../../../../assets/images/icon/dn.jpg"
+                    alt=""
+                  />
+                  {{ dossier?.dateNaissance | date }}</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link">
+                  <img
+                    style="width: 20px"
+                    src="../../../../assets/images/icon/gr.jpg"
+                    alt=""
+                  />
+                  {{ dossier?.genre }}</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="osahan-account-page-right shadow-sm bg-white p-4 h-100">
+            <div class="tab-content" id="myTabContent">
+              <div
+                class="tab-pane fade active show"
+                id="addresses"
+                role="tabpanel"
+                aria-labelledby="addresses-tab"
+              >
+                <h4 class="font-weight-bold mt-0 mb-4">
+                  Liste des rendez vous
+                </h4>
+                <div class="row">
+                  <div class="col-md-6" *ngFor="let rv of rendezvous">
+                    <div
+                      class="bg-white card addresses-item mb-4 border border-primary shadow"
+                    >
+                      <div class="gold-members p-4">
+                        <div class="media">
+                          <div class="mr-3">
+                            <i class="icofont-ui-home icofont-3x"></i>
+                          </div>
+                          <div class="media-body">
+                            <h6 class="mb-1 text-secondary">
+                              {{ rv.dateTime | date : "dd-MM-yyyy HH:mm" }}
+                            </h6>
+                            <p class="text-black">
+                              Doc : {{ rv.disponibiliesMedecin.description }}
+                            </p>
+                            <div>
+                              <strong
+                                >{{ rv.typeRendezVous }}
+                                <i style="color: grey">{{
+                                  rv.statut
+                                }}</i></strong
+                              >
+                            </div>
+                          </div>
+                          <div style="margin-top: 10px">
+                            <button
+                              class="btn btn-success"
+                              (click)="goToConsultation(rv.id)"
+                            >
+                              Consultation
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

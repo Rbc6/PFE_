@@ -1,0 +1,129 @@
+<div class="w-100 title-dialog">
+  <H2>Ajouter un Dossier</H2>
+  <hr />
+</div>
+<div mat-dialog-content class="dialog-user">
+  <div>
+    <form>
+      <div class="row g-3">
+        <div class="col-sm-6">
+          <label for="firstName" class="form-label"
+            ><i class="bi bi-person-circle"></i> Nom</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="firstName"
+            name="nom"
+            [(ngModel)]="dossier.nom"
+            placeholder="Nom"
+            required
+          />
+        </div>
+
+        <div class="col-sm-6">
+          <label for="lastName" class="form-label"
+            ><i class="bi bi-person-circle"></i> Prénom</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="lastName"
+            name="prenom"
+            [(ngModel)]="dossier.prenom"
+            placeholder="Prénom"
+            required
+          />
+        </div>
+
+        <div class="col-sm-6">
+          <label for="email" class="form-label">
+            <i class="bi bi-envelope"></i> Email <span class="text-muted"></span
+          ></label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            [(ngModel)]="dossier.email"
+            placeholder="patient@exemple.com"
+          />
+        </div>
+        <div class="col-sm-6">
+          <label for="address" class="form-label"
+            ><i class="bi bi-telephone-fill"></i> Téléphone</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="address"
+            name="telephone"
+            [(ngModel)]="dossier.telephone"
+            placeholder="Téléphone"
+            required
+          />
+        </div>
+        <div class="col-12">
+          <label for="address" class="form-label"
+            ><i class="bi bi-geo-alt-fill"></i> Adresse</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="address"
+            name="adresse"
+            [(ngModel)]="dossier.adresse"
+            placeholder="Adresse complete"
+            required
+          />
+        </div>
+
+
+
+
+        <div class="col-sm-6">
+          <label for="firstName" class="form-label"
+            ><i class="bi bi-person-circle"></i> Date Naissance</label
+          >
+          <input
+            type="date"
+            class="form-control"
+            id="firstName"
+            name="dateNaissance"
+            [(ngModel)]="dossier.dateNaissance"
+            placeholder="Date Naissance"
+            required
+          />
+        </div>
+
+        <div class="col-sm-6">
+          <label for="lastName" class="form-label"
+            ><i class="bi bi-person-circle"></i> Gendre</label
+          >
+          <select
+            name="genre"
+            [(ngModel)]="dossier.genre"
+            class="form-control"
+            id=""
+          >
+            <option value="HOMME">HOMME</option>
+            <option value="FEMME">FEMME</option>
+          </select>
+        </div>
+      </div>
+      <hr>
+      <div class="col-12">
+        <button
+          class="btn btn-success"
+          style="background-color: #2eb165; border-color: #2eb165"
+          type="submit"
+          id="submit-btn"
+          (click)="submit()"
+        >
+          <i class="bi bi-person-plus-fill"></i> Modifier
+        </button>
+      </div>
+    </form>
+  </div>
+  <!--End row-->
+</div>

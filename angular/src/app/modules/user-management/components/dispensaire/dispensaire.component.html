@@ -1,0 +1,120 @@
+<div class="div-main">
+  <div class="title-page">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand"
+          >List des dispensaires</a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+          <form class="d-flex" role="search">
+
+            <div style="display: flex; justify-content: left; padding: 30px">
+              <button
+                pButton
+                pRipple
+                label="Ajouter "
+                (click)="actionShowForm()"
+                icon="pi pi-plus"
+                class="p-button-success p-button-rounded"
+              ></button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <div>
+    <div class="row">
+      <div class="col">
+        <p-table [value]="dispensaireList">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Label</th>
+              <th>Quantité</th>
+              <th>Action</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-dispensaireList>
+            <tr>
+              <td>{{ dispensaireList.name }}</td>
+              <td>{{ dispensaireList.adresse }}</td>
+              <td>
+                <button
+                  pButton
+                  (click)="editItem(dispensaireList)"
+                  icon="pi pi-pencil"
+                  class="p-button-rounded"
+                  severity="secondary"
+                ></button>
+                <button
+                  pButton
+                  icon="pi pi-trash"
+                  style="margin-left: 2px"
+                  (click)="detelet(dispensaireList.id)"
+                  class="p-button-rounded p-button-danger"
+                  severity="secondary"
+                ></button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+      <div class="col-md-4" *ngIf="showForm">
+        <p-card header="Ajouter un dispensaire">
+          <form>
+            <div class="row">
+              <div class="col">
+                <mat-form-field class="full-width" appearance="outline">
+                  <input
+                    matInput
+                    placeholder="Name"
+                    name="name"
+                    [(ngModel)]="dispensaire.name"
+                  />
+                </mat-form-field>
+              </div>
+              <div class="col">
+                <mat-form-field class="full-width" appearance="outline">
+                  <input
+                    matInput
+                    placeholder="Adresse"
+                    type="text"
+                    name="adresse"
+                    [(ngModel)]="dispensaire.adresse"
+                  />
+                </mat-form-field>
+              </div>
+            </div>
+          </form>
+          <ng-template pTemplate="footer">
+            <p-button
+              label="Save"
+              icon="pi pi-check"
+              (click)="save()"
+            ></p-button>
+            <p-button
+              label="Cancel"
+              (click)="actionShowForm()"
+              icon="pi pi-times"
+              styleClass="p-button-secondary"
+              [style]="{ 'margin-left': '.5em' }"
+            ></p-button>
+          </ng-template>
+        </p-card>
+      </div>
+    </div>
+  </div>
+</div>
