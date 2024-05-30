@@ -66,6 +66,10 @@ export class JoursComponent implements OnInit {
     this.doctorService.createDispoJour(this.joursDispo , this.data.id).subscribe(res=>{
       this.dialogRef.close()
     })
+    const joursNonDispo = this.jours.filter((i: any) => !i.checked).map((i: any) => i.nom);
+    this.doctorService.DeleteDispoJour(joursNonDispo,this.data.id).subscribe(res=>{
+      this.dialogRef.close()
+    })
 
 
 

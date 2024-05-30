@@ -64,5 +64,16 @@ public class RendezVous {
         this.typeRendezVous = rendezVousDTO.getTypeRendezVous();
         this.motif = rendezVousDTO.getMotif();
         this.statut = rendezVousDTO.getStatut();
+        // Initialize and set dossier
+        this.dossier = new Dossier();
+        this.dossier.setNumero(rendezVousDTO.getNumeroDossier());
+
+        // Initialize and set dispensaire
+        this.dispensaire = new Dispensaire();
+        this.dispensaire.setId(rendezVousDTO.getDisponsaireId());
+
+        // Initialize and set disponibiliesMedecin
+        this.disponibiliesMedecin = new DisponibiliesMedecin();
+        this.disponibiliesMedecin.setId(rendezVousDTO.getIdDisMedcin());
     }
 }

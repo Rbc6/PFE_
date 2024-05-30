@@ -17,7 +17,7 @@ import java.util.function.Function;
 
 @Component
 public class JwtService {
-    private static final String SECERET = "!@#$FDGSDFGSGSGSGSHSHSHSSHGFFDSGSFGSSGHSDFSDFSFSFSFSDFSFSFSF";
+    private static final String SECRET = "!@#$FDGSDFGSGSGSGSHSHSHSSHGFFDSGSFGSSGHSDFSDFSFSFSFSDFSFSFSF";
     public String generateToken(String userName){
         Map<String, Objects> claims = new HashMap<>();
         return Jwts.builder()
@@ -29,7 +29,7 @@ public class JwtService {
     }
 
     private Key getSignKey() {
-        byte[] keyBytes = Decoders.BASE64.decode(SECERET);
+        byte[] keyBytes = Decoders.BASE64.decode(SECRET);
         return Keys.hmacShaKeyFor(keyBytes);
     }
     public String extractUserName(String token){

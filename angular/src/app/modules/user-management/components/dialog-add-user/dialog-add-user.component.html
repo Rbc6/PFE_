@@ -18,8 +18,12 @@
                     <div class="col">
                         <mat-form-field appearance="outline">
                             <mat-label>Mot de passe</mat-label>
-                            <input type="password" formControlName="password" matInput placeholder="Mot de passe">
+                            <input type="password" formControlName="password" matInput placeholder="Mot de passe" >
+                            <mat-error *ngIf="userForm.get('password').hasError('minlength') && userForm.get('password').touched" class="text-danger">
+                                Le mot de passe doit contenir au moins 6 caractères.                            </mat-error>
                         </mat-form-field>
+                            
+                      
                     </div>
                 </div>
                 <div class="row">
@@ -55,7 +59,7 @@
                         <div class="btn-radio-dialog">
                             <mat-label>Role </mat-label>
                             <mat-radio-group formControlName="role" aria-label="Select an option">
-                                <mat-radio-button value="NURSE"> NURSE</mat-radio-button>
+                                <mat-radio-button value="NURSE"> INFIRMIER</mat-radio-button>
                                 <mat-radio-button value="ADMIN"> ADMIN</mat-radio-button>
                             </mat-radio-group>
                         </div>

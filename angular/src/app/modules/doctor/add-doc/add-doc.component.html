@@ -1,5 +1,5 @@
 <div class="w-100 title-dialog">
-  <H2>Ajouter un Médicin</H2>
+  <H2>Ajouter un Médecin</H2>
   <hr>
 </div>
 
@@ -12,13 +12,13 @@
                 <div class="col">
                   <mat-form-field appearance="outline">
                       <mat-label>Prénom</mat-label>
-                      <input type="text"  name="prenom" [(ngModel)]="doctor.prenom" matInput placeholder="prenom">
+                      <input type="text"  name="prenom" [(ngModel)]="doctor.prenom" matInput placeholder="prenom" required>
                   </mat-form-field>
               </div>
                   <div class="col">
                       <mat-form-field appearance="outline">
                           <mat-label>Nom</mat-label>
-                          <input name="nom" [(ngModel)]="doctor.nom" matInput placeholder="nom">
+                          <input name="nom" [(ngModel)]="doctor.nom" matInput placeholder="nom" required>
                       </mat-form-field>
                   </div>
 
@@ -27,26 +27,29 @@
                   <div class="col">
                       <mat-form-field appearance="outline">
                           <mat-label>email</mat-label>
-                          <input name="email" [(ngModel)]="doctor.email" matInput placeholder="email">
+                          <input name="email" [(ngModel)]="doctor.email" matInput placeholder="email" #emailInput="ngModel" required email>
+                          <mat-error *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)">Entrez un email valide</mat-error>
+
                       </mat-form-field>
+
                   </div>
                   <div class="col">
                       <mat-form-field appearance="outline">
                           <mat-label>numeroTelephone</mat-label>
-                          <input name="numeroTelephone" [(ngModel)]="doctor.numeroTelephone" matInput placeholder="numeroTelephone">
-                      </mat-form-field>
+                          <input  required name="numeroTelephone" [(ngModel)]="doctor.numeroTelephone" matInput placeholder="numeroTelephone" >
+                        </mat-form-field>
                   </div>
               </div>
               <div class="row">
                   <div class="col">
                       <mat-form-field appearance="outline">
                           <mat-label>adresse</mat-label>
-                          <input name="adresse" [(ngModel)]="doctor.adresse" matInput placeholder="adresse">
+                          <input required  name="adresse" [(ngModel)]="doctor.adresse" matInput placeholder="adresse">
                       </mat-form-field>
                   </div>
                   <div class="col">
                     <mat-form-field class="full-width" appearance="outline">
-                      <mat-select placeholder="Specialite Medicales" name="specialiteMedicales" [(ngModel)]="doctor.specialiteMedicales" multiple>
+                      <mat-select  required placeholder="Specialite Medicales" name="specialiteMedicales" [(ngModel)]="doctor.specialiteMedicales" multiple>
                         <mat-option *ngFor="let sp of specialiteMedicales" [value]="sp">
                           {{ sp }}
                         </mat-option>

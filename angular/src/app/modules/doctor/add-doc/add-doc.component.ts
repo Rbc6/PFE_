@@ -40,7 +40,7 @@ export class AddDocComponent implements OnInit {
       (res) => {
         Swal.fire({
           title: 'Succès !',
-          text: 'Le médcin a été ajouté avec succès.',
+          text: 'Le médecin a été ajouté avec succès.',
           icon: 'success',
           timer: 4000,
           timerProgressBar: true,

@@ -43,4 +43,6 @@ public class RendezVousServiceImpl implements IRendezVousService{
     public void deleteRendezVous(Long id) {
         rendezVousRepository.deleteById(id);
     }
+
+    
 }

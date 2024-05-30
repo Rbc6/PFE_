@@ -106,5 +106,27 @@ export class ViewsDossierComponent implements OnInit {
     const url = "consultations/"+id
     this.router.navigateByUrl(url)
   }
-
+  delete(id :any){
+    Swal.fire({
+      title: "Êtes-vous sûr(e) ?",
+      text: "Vous ne pourrez pas revenir en arrière !",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Oui, supprimer !"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.dossierService.deleteDossier(id).subscribe(res => {
+          Swal.fire({
+            title: "Supprimé !",
+            text: "Le dossier a été supprimé.",
+            icon: "success"
+          }).then(() => {
+            this.router.navigate(['/liste-dossier'])
+          })
+        })
+      }
+    });
+  }
 }

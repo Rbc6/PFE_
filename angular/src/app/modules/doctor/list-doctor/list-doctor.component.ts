@@ -86,5 +86,15 @@ export class ListDoctorComponent implements OnInit {
       }
     });
   }
+  search(value: string) {
+    if (!value.trim()) {
+      this.getAllDoctor();
+      return;
+    }
+
+    this.doctors = this.doctors.filter(doctor =>
+      doctor.name.toLowerCase().includes(value.toLowerCase()) 
+    );
+  }
 
 }

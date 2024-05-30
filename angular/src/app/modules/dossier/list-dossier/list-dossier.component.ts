@@ -11,7 +11,9 @@ import { EditDossierComponent } from '../edit-dossier/edit-dossier.component';
   styleUrls: ['./list-dossier.component.scss']
 })
 export class ListDossierComponent implements OnInit {
-  dossiers:any
+  dossiers: any;
+  genreSelectionne: string = '';
+  filtreActif: boolean = false;
   constructor(
     private dossierService : DossierService,
     private router : Router,
@@ -45,11 +47,31 @@ export class ListDossierComponent implements OnInit {
     const url = "view-dossier/"+id
     this.router.navigateByUrl(url)
   }
+  filtrerParGenre(genre: string) {
+    if (this.filtreActif && this.genreSelectionne === genre) {
+      this.filtreActif = false;
+      this.getAllDossier();
+    } else {
+      this.filtreActif = true;
+      this.genreSelectionne = genre;
+      this.dossierService.getAllDossiers().subscribe((dossiers: any[]) => {
+        this.dossiers = dossiers.filter(dossier => dossier.genre === genre);
+      });
+    }
+}
 
 
+search(value: string) {
+  if (!value.trim()) {
+    
+    this.getAllDossier();
+    return;
+  }
 
-
-
-
+  this.dossiers = this.dossiers.filter(dossier =>
+    dossier.nom.toLowerCase().includes(value.toLowerCase()) ||
+    dossier.prenom.toLowerCase().includes(value.toLowerCase())
+  );
+}
 
 }

@@ -1,14 +1,8 @@
 package com.project.webservice;
 
-import com.project.webservice.entities.Jours;
-import com.project.webservice.entities.Specialites;
-import com.project.webservice.entities.Utilisateur;
-import com.project.webservice.entities.emun.JoursEnum;
-import com.project.webservice.entities.emun.Role;
-import com.project.webservice.entities.emun.SpecialiteMedicale;
-import com.project.webservice.repositories.JoursRepository;
-import com.project.webservice.repositories.MedecinRepository;
-import com.project.webservice.repositories.SpecialitiesRepository;
+import com.project.webservice.entities.*;
+import com.project.webservice.entities.emun.*;
+import com.project.webservice.repositories.*;
 import com.project.webservice.services.IUserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -24,17 +18,31 @@ public class InitialDataLoader implements CommandLineRunner {
     final JoursRepository joursRepository;
 
     final SpecialitiesRepository specialitiesRepository;
+    final AllergiesRepository allergiesRepository;
+    final ApcisRepository apcisRepository;
+    final ExRadioRepository exRadioRepository;
+    final ExBioRepository exBioRepository;
+    final ParaMedRepository paraMedRepository;
+    final MedicamentRepository medicamentRepository;
+    final ActeMedRepository acteMedRepository;
 
-    public InitialDataLoader(IUserService userService, MedecinRepository medecinRepository, JoursRepository joursRepository, SpecialitiesRepository specialitiesRepository) {
+    public InitialDataLoader(IUserService userService, MedecinRepository medecinRepository, JoursRepository joursRepository, SpecialitiesRepository specialitiesRepository, AllergiesRepository allergiesRepository, ApcisRepository apcisRepository, ExRadioRepository exRadioRepository, ExBioRepository exBioRepository, ParaMedRepository paraMedRepository, MedicamentRepository medicamentRepository, ActeMedRepository acteMedRepository) {
         this.userService = userService;
         this.medecinRepository = medecinRepository;
         this.joursRepository = joursRepository;
         this.specialitiesRepository = specialitiesRepository;
+        this.allergiesRepository = allergiesRepository;
+        this.apcisRepository = apcisRepository;
+        this.exRadioRepository = exRadioRepository;
+        this.exBioRepository = exBioRepository;
+        this.paraMedRepository = paraMedRepository;
+        this.medicamentRepository = medicamentRepository;
+        this.acteMedRepository = acteMedRepository;
     }
 
     @Override
     public void run(String... args) throws Exception {
-
+// Ajout premier administrateur
         if (userService.findByUserName("admin").isPresent()) {
             System.out.println("L'admin existe déjà, aucune action nécessaire.");
         } else {
@@ -56,7 +64,7 @@ public class InitialDataLoader implements CommandLineRunner {
             }
 
         }
-
+// Ajout des Jours
         if (joursRepository.findAll().size() == 0) {
 
             List<Jours> joursList = new ArrayList<>() {
@@ -71,14 +79,14 @@ public class InitialDataLoader implements CommandLineRunner {
             try {
                 joursRepository.saveAll(joursList);
                 System.out.println("les joues sont ajouté avec succès !");
-            }catch (Exception e) {
+            } catch (Exception e) {
                 throw new Exception("Erreur lors de la création des jours.", e);
             }
         } else {
 
             System.out.println("les joues existent déjà, aucune action nécessaire.");
         }
-
+// Ajout des specialités des médecins
         if (specialitiesRepository.findAll().size() == 0) {
 
             List<Specialites> specialitesList = new ArrayList<>() {
@@ -90,7 +98,7 @@ public class InitialDataLoader implements CommandLineRunner {
             try {
                 specialitiesRepository.saveAll(specialitesList);
                 System.out.println("les specialités sont ajouté avec succès !");
-            }catch (Exception e) {
+            } catch (Exception e) {
                 throw new Exception("Erreur lors de la création des specialités.", e);
             }
         } else {

@@ -28,4 +28,6 @@ public class Utilisateur implements Serializable {
 
     private Role role ;
 
+    public Utilisateur(Utilisateur user) {
+    }
 }

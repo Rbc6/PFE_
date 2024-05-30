@@ -55,7 +55,7 @@ public class DossierController {
         return updatedDossier != null ? ResponseEntity.ok(updatedDossier) : ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteDossier(@PathVariable long id) {
         dossierService.deleteDossier(id);
         return ResponseEntity.noContent().build();

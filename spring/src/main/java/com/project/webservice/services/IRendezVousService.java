@@ -16,4 +16,6 @@ public interface IRendezVousService {
     RendezVous updateRendezVous(Long id, RendezVous rendezVous);
 
     void deleteRendezVous(Long id);
+
+
 }

@@ -1,13 +1,13 @@
 <div class="div-main">
     <div class="title-page">
-        <h2>Liste Médcins</h2>
+        <h2>Liste Médecins</h2>
 
     </div>
     <div style="padding: 15px;">
         <div class="row align-items-center">
             <div class="col-md-6">
                 <div class="mb-3">
-                    <h5 class="card-title">Liste des médicins <span
+                    <h5 class="card-title">Liste des médecins <span
                             class="text-muted fw-normal ms-2">({{doctors?.length}})</span>
                     </h5>
                 </div>
@@ -16,8 +16,8 @@
                 <div class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-3">
                     <div>
                         <mat-form-field style=" width: 400px;">
-                            <mat-label>Recherche</mat-label>
-                            <input type="text" matInput name="searchTerm"  placeholder="Ex. 123456" style="height: 100% ;">
+                            <mat-label >Recherche</mat-label>
+                            <input type="text" matInput name="searchTerm"  placeholder="Ex. 123456" style="height: 100% ;" (input)="search($event.target.value)">
 
                         </mat-form-field>
                     </div>
@@ -69,10 +69,15 @@
                                     <td>
                                         <button pButton (click)="openDialogEditDoc(doctor)"  icon="pi pi-pencil" class="p-button-rounded"
                                         severity="secondary"></button>
-                                      <button pButton icon="pi pi-trash" (click)="delete(doctor.id)" style="margin-left: 2px;"
-                                        class="p-button-rounded p-button-danger" severity="secondary"></button>
-                                        <button pButton icon="pi pi-eye" style="margin-left: 2px;"
-                                        class="p-button-rounded" severity="secondary" (click)="openDialogJours(doctor)"></button>
+                                      
+                                        <button pButton icon="pi pi-trash" (click)="delete(doctor.id)" style="margin-left: 2px;"
+                                        class="p-button-rounded p-button-danger" severity="secondary" ></button>
+                                      
+                                      
+                                        <button pButton icon="pi pi-calendar" style="margin-left: 2px;" class="p-button-rounded" severity="secondary"
+                                         (click)="openDialogJours(doctor)" matTooltip="Voir les disponibilités de ce médecin"></button>
+
+
                                     </td>
                                 </tr>
 

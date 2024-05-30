@@ -39,6 +39,7 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
     public Utilisateur updateUser(Utilisateur user) {
         Utilisateur utilisateur = findById(user.getId());
         if(utilisateur!=null){
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
             userRepository.save(user);
             return utilisateur;
         }else{

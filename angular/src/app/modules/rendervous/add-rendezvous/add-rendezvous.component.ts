@@ -1,6 +1,6 @@
 import { DispensaireService } from './../../../core/services/dispensaire.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { DoctorService } from 'src/app/core/services/doctor.service';
 import { DossierService } from 'src/app/core/services/dossier.service';
@@ -14,20 +14,24 @@ export class AddRendezvousComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private medcinService : DoctorService,
+    private medecinService : DoctorService,
     public dialogRef: MatDialogRef<AddRendezvousComponent>,
     private rendezVousService : RendezvousService,
     private dossierService : DossierService,
     private dispensaireService : DispensaireService
   ) { }
-  rvezForm!: FormGroup;
+
+  rvForm!: FormGroup;
   dossiers:any
   dispensaires : any
+  
+
   ngOnInit(): void {
+    
     this.getAllDispensaire()
-    this.getAllDisMecdin()
     this.getAllDossier()
-    this.rvezForm = this.formBuilder.group({
+   
+    this.rvForm = this.formBuilder.group({
       dateTime: [''],
       duree: [''],
       typeRendezVous: [''],
@@ -39,6 +43,28 @@ export class AddRendezvousComponent implements OnInit {
     });
   }
 
+  selectedDate: Date;
+  dayOfWeek : any
+  getDayOfWeek(date: Date): string {
+    const days = ['DIMANCHE', 'LUNDI', 'MARDI', 'MERCREDI', 'JEUDI', 'VENDREDI', 'SAMEDI'];
+    return days[date.getDay()];
+  }
+  disDoc:any
+  onDateTimeChange(dateTimeValue: string) {
+    this.selectedDate = new Date(dateTimeValue);
+    this.dayOfWeek = this.getDayOfWeek(this.selectedDate);
+
+    console.log('Jour de la semaine :', this.dayOfWeek);
+    this.medecinService.disponibiliesMedecin().subscribe(res=>{
+      this.disDoc = res
+      this.disDoc = this.disDoc.filter(medecin => {
+        return medecin.jours.some(jour => jour.label === this.dayOfWeek);
+      });
+      console.log('Médecins travaillant le', this.dayOfWeek, ':', this.disDoc);
+    });
+  }
+ 
+
   getAllDispensaire(){
     this.dispensaireService.getAll().subscribe(res=>{
       this.dispensaires = res
@@ -46,18 +72,12 @@ export class AddRendezvousComponent implements OnInit {
   }
 
   onSubmit(){
-    this.rendezVousService.rendezvousCreate(this.rvezForm.value).subscribe(res=>{
+    this.rendezVousService.rendezvousCreate(this.rvForm.value).subscribe(res=>{
       console.log(res)
       this.dialogRef.close()
     })
   }
-  disDoc:any
-  getAllDisMecdin(){
-    this.medcinService.disponibiliesMedicin().subscribe(res=>{
-      this.disDoc = res
-      console.log(res)
-    })
-  }
+ 
 
   getAllDossier(){
     this.dossierService.getAllDossiers().subscribe(res=>{

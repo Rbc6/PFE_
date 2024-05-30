@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
+import { MatDialog } from '@angular/material/dialog';
+import { ChangePasswordComponent } from 'src/app/modules/auth/components/change-password/change-password.component';
 
 @Component({
   selector: 'app-view-user',
@@ -7,38 +12,42 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewUserComponent implements OnInit {
 
-  constructor() { }
 
+  constructor(private router : Router,
+    private authService :AuthService,
+    private dialog: MatDialog,
+  ) { }
+  user :any
   ngOnInit(): void {
+    this.authService.decodeTokenAfterLogin().subscribe(res=>{
+      this.user = res
+      console.log(this.user);
+  
+     },err=>{
+      this.router.navigateByUrl('auth/login')
+     })
   }
+  openDialogEditUser(data: any) {
+    const dialogRef = this.dialog.open(DialogEditUserComponent, {
+      data: data
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+      this.router.onSameUrlNavigation = 'reload';
+      this.router.navigate([this.router.url]);
+    });
+  }
+  openDialogChangePass(data: any) {
+    const dialogRef = this.dialog.open(ChangePasswordComponent, {
+      data: data
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      
+    });
+  }
+    }
+
+ 
 
 
-  /*** Animation Task Number ***/
-  taskcount:number=0; 
-  taskcountstop:any = setInterval(()=>{
-    this.taskcount++;
-    if(this.taskcount == 145)
-    {
-      clearInterval(this.taskcountstop);
-    }
-  },10)
-  /******/
-  processed:number=0; 
-  processedstop:any = setInterval(()=>{
-    this.processed++;
-    if(this.processed == 75)
-    {
-      clearInterval(this.processedstop);
-    }
-  },10)
-  /******/
-  completed:number=0; 
-  completedstop:any = setInterval(()=>{
-    this.completed++;
-    if(this.completed == 70)
-    {
-      clearInterval(this.completedstop);
-    }
-  },10)
 
-}

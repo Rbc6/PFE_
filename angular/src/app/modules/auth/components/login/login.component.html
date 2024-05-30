@@ -11,11 +11,11 @@
                     </div>
 
                     <div class="form-floating">
-                        <input type="text" class="form-control floatingEmail" id="floatingInput" placeholder="username">
+                        <input type="text" [(ngModel)]="user.userName" name="userName"  class="form-control floatingEmail" id="floatingInput" placeholder="username">
                         <label for="floatingInput">User name</label>
                     </div>
                     <div class="form-floating">
-                        <input type="password" class="form-control floatingPassword" id="floatingPassword" placeholder="Password">
+                        <input type="password" [(ngModel)]="user.password" name="password"  class="form-control floatingPassword" id="floatingPassword" placeholder="Password">
                         <label for="floatingPassword">Password</label>
                     </div>
 
@@ -24,11 +24,8 @@
                             <input type="checkbox" value="remember-me"> Remember me
                         </label>
                     </div> -->
-                    <button class="w-100 btn btn-lg btn-primary btn-submit" type="submit">Login</button>
-                    <div class="link-reset">
-                        <!-- <p>Forgot password?<a routerLink="../forgot-password"> Reset</a></p> -->
-                        <p>Don’t have an account? <a routerLink="../sign-up"> Sign up </a></p>
-                    </div>
+                    <button class="w-100 btn btn-lg btn-primary btn-submit" type="submit" (click)="login()">Login</button>
+
                     <!--<p class="mt-4 mb-1 text-muted text-center">&copy; Tanitlab 2022</p>-->
                 </form>
             </main>

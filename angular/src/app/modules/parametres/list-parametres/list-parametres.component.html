@@ -1,0 +1,201 @@
+<div class="div-main">
+    <div class="title-page">
+        <H2>Paramètres de l'application</H2>
+    </div>
+
+    <div class="page-user">
+        <div class="row py-4  px-2">
+
+            <div class="col-sm-6 col-md-6 col-lg-4 col-xxl-3 mb-4">
+
+                <div class="accordion" id="accordionExample1">
+                    <div class="card card-accordion">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="card-header-left col-6 d-flex flex-row justify-content-start">
+                                    <img  width="40px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEB0lEQVR4nO2ZbWhWZRjHf3PT1Dl1tsQx37MXQ4UFtQQRyg9qalLUQIYVRFBK2gcRIyg2JVswGIhDiT6IKOpHQTRfabqNxtSluGhFq/WiMx3I1tvaeuKO/4Gb47bnnOfc52wfnj/c8Dzn3Pf/uq9z7vu+rut/IIsssnCNUmAbcAxoBe4AfwAp4B5wE2gGjqjfM8AYRgnGA+8AbZpw2PYLsBuYOZJOPA/8aE3K/K4DNgBPAkVy1KAAKAbKgFeBPcB31tg/gZ1W/0SQA1QD/2oSzXIqk2XyFHAYGBDXZWAOCTnxqYz+pWVlrkWFeVPt4u0EHiZmvCdjPcCzjrknA1+Iv03/Y8HTwD9aBmtismH20rdyZl8cBnK0F2Iz4Ns3fXpgj7omXyUnbgGFxI+9smdON6c4KuIdJIOFOhV7tNycYJpOqH6ghOTgbfyVrghfFuFZksUu2a1yRfixCCtJFutk95QrwjMiNMRJ4hHZ/coVoRdxDXGSmC67P7sivC3Ch3CLc0o0a5TS+1OdB6xUqMiFwb9FOA63OO9L6QdzqsVKJqdGNdgrsom4RY4mXeMrB0xrUJ8ZwDe61gRMiWLwJxGZeiIu2E79ANRb92YB3ZpDS5TM4ppIHmNkYN5Cn/W2rmTqzEkRxJXxpkO57LdaS9AsvfywRB9osIm0I4EDsm8EiwXAr/p/AsgLQ/ScVdImDVM+d8n+E7q2BLira/vDkI21noIpSZNEmex+P8j1Ht17Pwzhh67znoCoHKYuWauM3KT7G4MSFkpwM6QvkBy8gLh6iPtbdd8E7eVBSTdpUHsMUX4wFOtp/55G7/KqSbOXZgchzrNiypvu5vv/Q3kbOK1g2O+L8scDzOtzK5WZEMToixpw1Y0PTFLqMZys+lbApe+pL0bwS4tcKygtju4Hn4irA6gA5uuUHCfhO6UUJQgWWSfZ9iAD6tTZLIeo6BSX0cxsrMiwqHpJ+6pfys+weE1GDhId3tut1qlTomVSq+sfpRnfADT6InyVxnanKwZL1fFLB45stsTwwdqyNOO/Vr/XfdnAhSB7ea51DLvAUqmXzfpe4q3zu9qTw6HCivxjlUjWWiefXQ7ch0J1+o14sEX8hwL0zQVuWEmtFx5Mef5GugeRq85G0I4Dp8RvnraNi2p+vOJbjk1hikBvkGvkW6rmgwFtjtHp5p1yoSTWuBxZL95LIW2WWyI7o8GR/eKtVXAsCmCzQMewuXc97Be0TB2p1wlTI+VyntSZAinwntBhN/NZ+7MhbD6uEtgT8kJ/f8zUkVTA1qU45VWHKasV6+PrAe2nlCSjjJTQqI5USWnsUJreq8kYxf9dJZMejHrjFVj+NqA0PpLelTQaVUDd0Z6o0j7KIgtGAP8BF/RvzfaPPDQAAAAASUVORK5CYII=">
+                                    <span class="span-header">Allergies</span>
+                                </div>
+                             
+                            </div>
+                        </div>
+                        <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo"
+                            data-bs-parent="#accordionExample1">
+                            <div class="card-body">
+                                <div class="row card-link">
+                                    <div class="col-12 div-lin"><a (click)="OpenAddAllergyDialog()">Ajouter une allergie</a></div>
+                                    <div class="col-12 div-lin"><a  (click)="OpenListAllergyDialog()">Consulter les allergies</a></div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-6 col-lg-4 col-xxl-3 mb-4">
+                <div class="accordion" id="accordionExample2">
+                    <div class="card card-accordion">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="card-header-left col-6 d-flex flex-row justify-content-start">
+                                    <img width="40px"  src="https://img.icons8.com/ios/50/diabetes.png" alt="diabetes"/>
+                                    <span class="span-header">APCIS</span>
+                                </div>
+                           
+                            </div>
+                        </div>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                            data-bs-parent="#accordionExample2">
+                            <div class="card-body">
+                                <div class="row card-link">
+                                    <div class="col-12 div-lin"><a (click)="OpenAddAPCIDialog()">Ajouter APCI</a></div>
+                                    <div class="col-12 div-lin"><a (click)="OpenListAPCIDialog()">Consulter APCIS</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-6 col-lg-4 col-xxl-3 mb-4">
+                <div class="accordion" id="accordionExample3">
+                    <div class="card card-accordion">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="card-header-left col-6 d-flex flex-row justify-content-start">
+                                    <img  width="40px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAADGklEQVR4nO2aSWgUQRSGPwMzCoK7Ek08ulxcEtCDnqIh6kG8eBBF8aYIigElBxU0R0FwPWogETxoNhBxQxA8RAWJIqgIKghqTGJUYtxiRgr+hqLJ9PRkJl016A8NA12v+n3Uq1evXw/817hrA3AReAP8APqALuAQMIsSUAVwF8hEXF+A3XisJcA7OfseOAAsBCYCM4D1QIcFdAJPIT7KwRvAtIixm4FvGrsLTyE6gXQMGwMzAnwGZuKBlo4BIlC77BrwCMLEfj4QQWbLKDk4hegtAAIlgIwSRMlCoGwWpOPEtcyCaC8Awmix5nlOCUMYHdRc5ylhiOnAB81XiyOIVIHzpYGbmu82DiCuaoMWCtFhlTGmNht3LVfVah7aVqSV6NR8/UAVCa9Ea5Eg2jXfALCChFciDPEIeAKUjzGc+oFqHEMYPda9ZzFh0j5CGM0BnmrMC2BexHwpF+FUZUFcyRFO5VqRqJVJWxCJrUSVHjYaRLZwsmG6I1ai3xeIsNNhmG41FZxCVFsQl4sQTimdN4lCVFjnRBhirOHUljSEUYv1elqMcHICgfWKGpU+44ZTqysIlGpHYnQwcoWTUwisULgATCBa2cLJOUQZ0Gx1/E7GgME3iCnAJTkxBHzX71MxYVI6b5xCbATeWk6sBtZZMGdywDiHqLT2hLnuAQus+3VaHXPvbBYY5xCbgE9ywPRZ92iPhFVrwZwLwaR0aDqDqFeKDcryuTnGr7W65M36IFMeej11ApEB/gD78+iqB6VJ+OpzAbFVAL+BLTFtdlibfkhtmh5dLdpniWoV8FMhtTOmzRpgWBBNwGwcayrwWg4dycPugWyO4Yma5NC1LJlpNK2UTW8RWj5FCykTToPA/Jg2BvaWb6vRJYcO52Fz3GpdmrB0rjo59AqYFNNmn2x+ATV4outyam+MsebEbtR4E4rb8EQVSp2DMcKjUh31YCW245EarJIimyYDR63yo0fliFe6L+ca1c4sU5dvkT7Kmz+2fLVKjdYc7+nONJzjDyxBvXVHJ7i3qgFOAw+tct3UWC+1H+pd1En8q/oLPe9QTrY1WX0AAAAASUVORK5CYII=">
+                                    <span class="span-header">Actes Médicaux</span>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <div id="collapse-3" class="accordion-collapse collapse show" aria-labelledby="heading-3"
+                            data-bs-parent="#accordionExample3">
+                            <div class="card-body">
+                                <div class="row card-link">
+                                    <div class="col-12 div-lin"><a (click)="OpenAddActeDialog()">Ajouter un acte médical</a></div>
+                                    <div class="col-12 div-lin"><a (click)="OpenListActeDialog()">Consulter les actes médicaux</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-6 col-lg-4 col-xxl-3 mb-4">
+                <div class="accordion" id="accordionExample4">
+                    <div class="card card-accordion">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="card-header-left col-6 d-flex flex-row justify-content-start">
+                                    <img  width="40px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAACE0lEQVR4nO1Vv2tUQRC+RhBUtAlBmxC5mTUB797M4pu5Qzgs0tkZG0ELQStB849oYyGooKDYxr/BH9iKYiWkiKCFcIGks4h8zzx8eVyKu+y94I8PHrv7zczut7uz81qtPxEUzVjtLalvkdobip43tniQ/ikW/9YWu9TpdI6ELF/G+EyMJxsRQGo3SexhjXsMvjkBao9GCLjR6BWELF9eXBwcDbF3mcS/NnYFAJKOxF6T2iaJv+Ksd671V4HVhqy+ne6z4ZgCfDvthsacj3cCoJzU10o+9PvHSOw+q39k8Y1id+IbJPYBPOylL+LKnU8sgCqLA6djPE7ityjLu+jDr+CyvAse/ap/GT+xgCpijIeC9K6T+ksW+/w7T2yIMXjY4bcrMJWAdvQrpL6Kd7+QGc11Byfghxbjoh6or8JvKgKAebNZyvwaqd1ltae/csCeYAwe9tYIpDkB7V0k8e+s/oLFV7Ag/IpWfAU87PCbioB5s1mUWxz3zuJ34BfUbrPkV8HDPuoUkl0Bqz1g9XUSe0Zi94oTQCv2nNW+wD7OfGMLaGvuyHIW67Sz8zN4ZthxiH4WPOxJBVCtDhQ28Xes/inE/EIhKtoSxuDrvvuuA1yrhMWkYgujYup8kkqYChMIsIP9G072QtKe2p6oLlTNjwMRwHv0/wuYKvifvwKqZP7uvv2ovv3SRurv5waDw9O9l33gJ0v/K265ynKJAAAAAElFTkSuQmCC">
+                                    <span class="span-header">Examen Radio</span>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div id="collapse-4" class="accordion-collapse collapse show" aria-labelledby="heading-4"
+                            data-bs-parent="#accordionExample4">
+                            <div class="card-body">
+                               
+
+                                <div class="row card-link">
+                                    <div class="col-12 div-lin"><a (click)="OpenAddRadioDialog()">Ajouter un examen Radio</a></div>
+                                    <div class="col-12 div-lin"><a (click)="OpenListRadioDialog()">Consulter les examens Radio</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-6 col-lg-4 col-xxl-3 mb-4">
+                <div class="accordion" id="accordionExample5">
+                    <div class="card card-accordion">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="card-header-left col-6 d-flex flex-row justify-content-start">
+                                    <img width="40px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAADX0lEQVR4nO2ZW0tUURTHf4akkfXWQ2oRqUHYhcCHwLLHhPEbFBEU1Acoe8+yeujy0AX7ApGDvmQGmoFJGT0GQRKJD1kECamJKdnEov+BzTBn5pyZM5dT/WCB7su67H323mvvgdLQCCSBBckA0ELMaATmgFSaWFkDMSIpxx/JcZMhlT0kRizIaXf0t6nsGzFiTk7bJ5YeyFdixAM5PaRgTB6rzOoqhpEMCzmsTFABpCKSslOoI/8DiZq/5tOaiCCI51QQqZAjWzEz8c8E0pgj441FII0BMt5YBJIMkPHGIpCFABlvLAKZz5LxxiqQgSwZbzJD+4rhqJya0f+7dNfItNib1WZGZda3IqgF3smpbqe8QQt7XpJ0gkBtU+prOsrOJTk0BdSE6LceeKu+PZSZA8Aq8AvoyKN/h/quSldZsNF/oxHtK0BPn3SYrjAzGhlX5MA0sKkAPRuB99LVS4k5CPwE1oAjEehrd/QdokTUOov0eoR6bzi72AZKwK0Ib4V+crPYQXRo+osdyFqeu2DgT2pKhq4Vywh/dHvnUlEOyt5iGxA1zhq0wzZS9uvQ8ttV9gLDwIrEEsTWAuwdli2zuY+IWAe81gjd9gnCu3+4Ml9gMHek5xVQRQSclMKPPgffsOpHlBSajDppfL5sBmal5wQFUgd8krJjGeptpH6ovskpb1bZcoGjeVx6ZuVL3lyWohc+DrmBuCl6S5ZAuoAx4DuwqL8TPvargJfSZb7kxRZgSYuuLUs77+Y3qgBMnjqPD5lS/kzil8q3yYcl+RSaizIwmKNdq3NHd8Xu5rvTZiKlGTwHbJWcd2Y14WNjUPXmUyjqnHcpS+gIEMyQHFrWTLhBGM+kz4JIx7stjvnob3euypYtB+asOk4SHd4WbbOQTr3qFrL0n1SbM2GMPlGnU1ROIKfVxrb7wHxWp+1Ex5h02ppI50KOT8vYoTbmW2C8xVfQ3p1Gwlns3ZqFegWxkmOxezmY1z8w0+qUbdvNh548tl+PPWr3gRDcU6d+oiehT2gxwIHo0i+f7hKCJp283gtJlJ9YWOqA+/LFfNoZVkGXRiyl50+7U3fqBbGa4lEtG52y6T29LgacOd97yHgJrra5ZDyqe4k9/1zVL7hf9HRTLKdNt9mwX3rt7cxs5+Q36RH05AzAR/0AAAAASUVORK5CYII=">
+                                    <span class="span-header">Examen Biologique</span>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <div id="collapse-4" class="accordion-collapse collapse show" aria-labelledby="heading-4"
+                            data-bs-parent="#accordionExample4">
+                            <div class="card-body">
+                    
+                                <div class="row card-link">
+                                    <div class="col-12 div-lin"><a (click)="OpenAddBioDialog()">Ajouter un examen biologique</a></div>
+                                    <div class="col-12 div-lin"><a (click)="OpenListBioDialog()">Consulter les examens biologiques</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-sm-6 col-md-6 col-lg-4 col-xxl-3 mb-4">
+                <div class="accordion" id="accordionExample6">
+                    <div class="card card-accordion">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="card-header-left col-6 d-flex flex-row justify-content-start">
+                                    <img width="40px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAC4UlEQVR4nO2ZXYhNURTHf8M0zJAyvoo8KREyRQpF4cXHA3lWypQHpcnLiBqTrzEPHj0QEq9eRlGKSMgDJV+DMJi5GN8zHoQ4WvnvWp3uRLc7Z87W/dXq7LPOPvuutc/ee629L1SgBmgHXgHdwB6guoR+sXf2qo0C0MaftjPjAJAMkuzP0pGCfnQhsKgMxvt2rO3MCAYMdJ91OyVTcSRF5YuUi8rQSlEZWuWOI7b2Ly5DHPHt9JAhbYMY2fdl6UiNnCkoT9pdJNcaLcO+SBLpPNXK06yNHjmRaa41ELWuPF7Gv5Mk0hWrmwuqgCbgpYztApYBU9yY71bZdCuA57p/oXetjSFnuxvfX3V9CkxT+Ykkka4rVdekmRwQencr0Kjya2CWyvckiXRvVG7UO+ErDjlh/HvZBcxT+RZwU2XTtRap30sOOO4Msp7fpDEf9hfXgKsuXlSpzgP33lFywEQ3Bz4DO4ExmvCmuyhJpLNnO4CP0j1SG7nADOlwPdzvjD8HnHVO9bt6Z/LkhGcJcDk1/m1Z7kzpLgFLiYDZwKFU75s8BuYQCdWubPNhS2pin85LGvI32rXcrgaGS2cr1QagT85YndxTkLEHgWfAGvdsvguYueeTiw2JDvO2KYrPGIqzq1I5JWN/6trqovkPXY8QAROAu25y3wfOu/s7QD2RMFLROwyzxGXF44iEetfjdcBG4Lpz5ra+Wu45ppyrJWWwHS48lDMniIBeGXtDmydLFEfoWVi13hIBfc4Ru66TXFEuZrr3REBHaoKvlFj5l0tTcs9MzZHgyGZJuLeVbDqRMFfxI72ltW1xA5FRq9ORD84RW7WGERFNwFqVxyqB/CZnbFmOhl4ZfcEdky6PacVKL8Emk6SbHFPmGwjnWImGFi4DzsXRz7/S7BypU3oS5shUImKUO+M9nIor0dEAfC8SR6JilTvLCnv4RH8v+D187unUHmS9TlAWACd1GGE7xAr/Nb8BbcaQUuftpUwAAAAASUVORK5CYII=">
+                                    <span class="span-header">Paramédicales</span>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <div id="collapse-4" class="accordion-collapse collapse show" aria-labelledby="heading-4"
+                            data-bs-parent="#accordionExample4">
+                            <div class="card-body">
+                        
+
+                                <div class="row card-link">
+                                    <div class="col-12 div-lin"><a (click)="OpenAddParaMedDialog()">Ajouter un paramédicale</a></div>
+                                    <div class="col-12 div-lin"><a (click)="OpenListParaMedDialog()">consulter les paramédicales</a>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-6 col-lg-4 col-xxl-3 mb-4">
+                <div class="accordion" id="accordionExample7">
+                    <div class="card card-accordion">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="card-header-left col-6 d-flex flex-row justify-content-start">
+                                    <img width="40px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB/klEQVR4nO2Xu0rEQBSGPwtvhZfCFS+NlzcQC+208NIo6mOoLyKiID6D+ATeRSvFQmzWQitRQRt3CwVBFCIDJzAEZCdxzm6U+SAkG5L/3z/nzGQCgUDumAYegcjT9iCaVefBYwg7TNWJzfOq50wI8gOhIr/l3wz2ac9hajb9+urtmo0NQx0wAqx5DGK0jGbVGAeuE21x8gu904RWERhDmVngQwyfrKdoKpQVc+8osA48i7bxmEGJXuBdjFaAZgWPZmBVPIxXj4IHm2KwhT7b4rWhIX4v4kPoMyxedxriXyLeiD5N4vWpIR7VaPPOvwtSLaIQRPEJ9QNTsv+TFSkAx4mePwI6lPycSCvcKesmc08J2AHK8vtAwc+ZNMJ2CLPvspY5JTnf59EvFa7CBStEHMQEi9mT8xOe/FLjKnxsBSgmwnRb7ZXrigzKNS/STskWi4/3PfllwkV4Sq7Ztc7ZYeJABU9+mXARHrBmKTOwkXZKtpgvv0y4Ch/KdWWpTDlDiFwE6ZD3hP0S3Hdsp1wFiTGz0qTD7OTLz5mw+s1IFD6sKhC+EDMShcFegVd5Qi3o0yZextM7FyI+hz4L4nWuIb4s4jdAO3q0A7fitahh0ABcWWHmgVaP+kZrwQpxCdSjRI8VRnO7lFWzKqYyS9K/bx7/vNE6k3ZSq0QgQDq+Aax7zewhlRDLAAAAAElFTkSuQmCC">
+                                    <span class="span-header">Médicaments</span>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div id="collapse-4" class="accordion-collapse collapse show" aria-labelledby="heading-4"
+                            data-bs-parent="#accordionExample4">
+                            <div class="card-body">
+                                <div class="row card-link">
+                                    <div class="col-12 div-lin"><a (click)="OpenAddMedDialog()">Ajouter un médicaments</a></div>
+                                    <div class="col-12 div-lin"><a (click)="OpenListMedDialog()">Consulter les médicaments</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>    
+    </div>
+</div>

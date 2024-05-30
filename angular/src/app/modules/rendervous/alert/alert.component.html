@@ -36,6 +36,8 @@
           <td>
             <button pButton icon="pi pi-eye" style="margin-left: 2px;" (click)="goTo(alerts.rendezVous.dossier.id)"
             class="p-button-rounded p-button-danger" severity="secondary"></button>
+            <button pButton icon="pi pi-trash" style="margin-left: 2px;" (click)="delete(alerts.id)"
+              class="p-button-rounded p-button-danger" severity="secondary"></button>
           </td>
         </tr>
       </ng-template>

@@ -8,7 +8,7 @@ export class RendezvousService {
 
   constructor(private http : HttpClient) { }
 
-  getDataCalandar(){
+  getDataCalendar(){
     return this.http.get("http://localhost:8081/rendezvous/getAllV2")
   }
   getAllRendezVousByDossier(id:any){
@@ -20,10 +20,13 @@ export class RendezvousService {
   }
 
 
-  rendezvousDalete(id:any){
-    return this.http.delete("http://localhost:8081/rendezvous/"+id)
+  rendezvousDelete(id:any){
+    return this.http.delete("http://localhost:8081/rendezvous/delete/"+id)
   }
 
+  rendezvousUpdate(id :any,data:any){
+      return this.http.put('http://localhost:8081/rendezvous/update/'+id, data);
+  }
   rendezvousById(id:any){
     return this.http.get("http://localhost:8081/rendezvous/"+id)
   }
@@ -31,6 +34,9 @@ export class RendezvousService {
 
   getAllAlert(){
     return this.http.get("http://localhost:8081/api/alert")
+  }
+  deleteAlert(id : any){
+    return this.http.delete("http://localhost:8081/api/alert/delete/"+id)
   }
 
 }

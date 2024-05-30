@@ -105,6 +105,7 @@ public class RendezVousController {
             rendezVous.setDossier(new Dossier().convert(dossier));
             rendezVous.setDisponibiliesMedecin(new DisponibiliesMedecin().convert(disMedecin));
             RendezVous createdRendezVous = rendezVousService.createRendezVous(rendezVous);
+            // géneration d'un alert
             if(createdRendezVous.getDispensaire().getId() != dossier.get().getDispensaire().getId()){
                Alert alert = new Alert();
                alert.setRendezVous(createdRendezVous);
@@ -120,14 +121,41 @@ public class RendezVousController {
 
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<RendezVous> updateRendezVous(@PathVariable Long id, @RequestBody RendezVous rendezVous) {
-        RendezVous updatedRendezVous = rendezVousService.updateRendezVous(id, rendezVous);
-        return updatedRendezVous != null ? ResponseEntity.ok(updatedRendezVous) : ResponseEntity.notFound().build();
+    @PutMapping("update/{id}")
+    public ResponseEntity<RendezVous> updateRendezVous(@PathVariable Long id, @RequestBody RendezVousDTO rendezVousDTO) {
+        Optional<RendezVous> existingRendezVousOpt = rendezVousService.getRendezVousById(id);
+        if (existingRendezVousOpt.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        RendezVous existingRendezVous = existingRendezVousOpt.get();
+
+        Dispensaire dispensaire = dispensaireRepository.findById(rendezVousDTO.getDisponsaireId()).orElse(null);
+        Optional<Dossier> dossierOpt = dossierService.getDossierByNumero(rendezVousDTO.getNumeroDossier());
+        Optional<DisponibiliesMedecin> disMedecinOpt = disponibilisiesMedecinRepository.findById(rendezVousDTO.getIdDisMedcin());
+
+        if (dossierOpt.isEmpty() || disMedecinOpt.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+
+        // Update fields
+        existingRendezVous.setDateTime(rendezVousDTO.getDateTime());
+        existingRendezVous.setDuree(rendezVousDTO.getDuree());
+        existingRendezVous.setTypeRendezVous(rendezVousDTO.getTypeRendezVous());
+        existingRendezVous.setMotif(rendezVousDTO.getMotif());
+        existingRendezVous.setStatut(rendezVousDTO.getStatut());
+        existingRendezVous.setDispensaire(dispensaire);
+        existingRendezVous.setDossier(dossierOpt.get());
+        existingRendezVous.setDisponibiliesMedecin(disMedecinOpt.get());
+
+        RendezVous updatedRendezVous = rendezVousService.updateRendezVous(id, existingRendezVous);
+        return ResponseEntity.ok(updatedRendezVous);
     }
 
-    @DeleteMapping("/{id}")
+    @Transactional
+    @DeleteMapping("delete/{id}")
     public ResponseEntity<Void> deleteRendezVous(@PathVariable Long id) {
+        alertRepository.deleteByRendezVousId(id);
         rendezVousService.deleteRendezVous(id);
         return ResponseEntity.noContent().build();
     }

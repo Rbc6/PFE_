@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Chart, registerables } from 'chart.js';
+import { Chart, ChartData, ChartOptions, registerables } from 'chart.js';
 import { DoctorService } from 'src/app/core/services/doctor.service';
+import { DossierService } from 'src/app/core/services/dossier.service';
 import { RendezvousService } from 'src/app/core/services/rendezvous.service';
+import { UsersService } from 'src/app/core/services/users.service';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -12,7 +15,9 @@ export class DashboardComponent implements OnInit {
   specialiteMedicale: any = [];
   constructor(
     private doctorService: DoctorService,
-    private rendezVousService: RendezvousService
+    private rendezVousService: RendezvousService,
+    private userService : UsersService,
+    private dossierService : DossierService
   ) {}
   jours = [
     'LUNDI',
@@ -27,11 +32,28 @@ export class DashboardComponent implements OnInit {
   allDoc: any;
   specialite: any = [];
   nbSpecialite: any = [];
+  
+ 
   ngOnInit(): void {
     Chart.register(...registerables);
     this.getAllDoctors();
     this.getAllRendezVous();
+    this.getAllUsers()
+    this.getAllDossiers()
+    this.NbMedecinParSpecialite()
+    this.getDossierParGenre()
+    this.DureeConsultationMoyen()
+    this.getAllAlerts()
 
+  }
+  AllAlerts : any =[]
+  getAllAlerts(){
+    this.rendezVousService.getAllAlert().subscribe((res)=>{
+      this.AllAlerts=res
+    })
+  }
+
+  NbMedecinParSpecialite(){
     this.doctorService.getSpecialiteForDash().subscribe((res) => {
       this.specialiteMedicale = res;
       this.specialiteMedicale.map((item: any) => {
@@ -74,11 +96,11 @@ export class DashboardComponent implements OnInit {
               display: true,
               padding: 20,
               color: 'black',
-              text: 'Nobmre des médcins par spécialité',
+              text: 'Nombre des médecins par spécialité',
               font: {
                 size: 16,
               },
-              align: 'start',
+              align: 'center',
             },
           },
         },
@@ -153,11 +175,11 @@ export class DashboardComponent implements OnInit {
               display: true,
               padding: 20,
               color: 'black',
-              text: 'Nobmre des médcins disponible par jour',
+              text: 'Nombre des médecins disponible par jour',
               font: {
                 size: 16,
               },
-              align: 'start',
+              align: 'center',
             },
           },
         },
@@ -176,7 +198,7 @@ export class DashboardComponent implements OnInit {
   nbRadio = 0
   nbAmbula = 0
   getAllRendezVous() {
-    this.rendezVousService.getDataCalandar().subscribe((res) => {
+    this.rendezVousService.getDataCalendar().subscribe((res) => {
       console.log('getAllRendezVous', res);
       this.allRendezVous = res
       this.allRendezVous.map((i:any)=>{
@@ -245,5 +267,140 @@ export class DashboardComponent implements OnInit {
         },
       });
     });
+  }
+
+  dureeMoyen: number = 0;
+  Rdv: any =[];
+
+DureeConsultationMoyen() {
+  this.rendezVousService.getDataCalendar().subscribe((res) => {
+    this.Rdv = res;
+    let totalDuree = 0;
+    this.Rdv.forEach((i: any) => {
+      if (i.rendezVous.duree === "DUREE_15") {
+        totalDuree += 15;
+      } else if (i.rendezVous.duree === "DUREE_30") {
+        totalDuree += 30;
+      } else if (i.rendezVous.duree === "DUREE_45") {
+        totalDuree += 45;
+      } else if (i.rendezVous.duree === "DUREE_60") {
+        totalDuree += 60;
+      }
+    });
+
+    
+    if (this.Rdv.length > 0) {
+      this.dureeMoyen = totalDuree / this.Rdv.length;
+    } else {
+      this.dureeMoyen = 0;
+    }
+  });
+}
+
+
+  homme = 0
+  femme = 0
+  getDossierParGenre() {
+    this.dossierService.getAllDossiers().subscribe((res) => {
+      console.log('getAllRendezVous', res);
+      this.allDoss = res
+      this.allDoss.map((i:any)=>{
+        if(i.genre == "HOMME"){
+          this.homme = this.homme +1
+        }
+        if(i.genre == "FEMME"){
+          this.femme = this.femme +1
+        }
+       
+      })
+    
+
+      const myPieThree = new Chart('pieThree', {
+        type: 'pie',
+        data: {
+          labels: ['Homme', 'Femme'],
+          datasets: [
+            {
+              label: 'My First Dataset',
+              data: [this.homme, this.femme],
+              backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                'rgb(255, 205, 86)',
+                'rgb(0, 205, 86)',
+              ],
+              hoverOffset: 4,
+            },
+          ],
+        },
+      });
+    });
+  }
+ 
+
+  loadRendezVousData(): void {
+    this.rendezVousService.getDataCalendar().subscribe((res) => {
+      const dataByHour = new Map<string, number>();
+      this.Rdv =res
+      this.Rdv.map((rdv: any) => {
+        const date = new Date(rdv.rendezVous.date);
+        const hour = date.getHours().toString().padStart(2, '0') + ':00'; // Format HH:00
+
+        if (dataByHour.has(hour)) {
+          dataByHour.set(hour, dataByHour.get(hour)! + 1);
+        } else {
+          dataByHour.set(hour, 1);
+        }
+      });
+      const MyLineChart = new Chart('lineOne', {
+        type: 'line',
+        data: {
+          labels: ['8', '9'],
+          datasets: [
+            {
+              label: 'My First Dataset',
+              data: dataByHour,
+              backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                'rgb(255, 205, 86)',
+                'rgb(0, 205, 86)',
+              ],
+              
+            },
+          ],
+        },
+      });
+
+    });
+  }
+
+
+  admin = 0
+  nurse = 0
+  allusers :any = [];
+  getAllUsers(){
+    this.userService.getAllUsers().subscribe((res)=>{
+      this.allusers=res
+      console.log(res)
+      this.allusers.map((i:any)=>{
+        if(i.role == "ADMIN"){
+          this.admin = this.admin +1
+        }
+        if(i.role == "NURSE"){
+          this.nurse = this.nurse +1
+        }
+       
+      })
+    })
+  }
+
+
+  allDoss :any =  [];
+  getAllDossiers(){
+    this.dossierService.getAllDossiers().subscribe((res)=>{
+      this.allDoss=res
+      console.log(res)
+    })
   }
 }

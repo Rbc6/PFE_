@@ -16,21 +16,19 @@
                         <div class="card-body">
                             <div class="author">
                                 <img alt="..." class="avatar border-gray" src="../../../../../assets/images/pict-user.jpg">
-                                <h5 class="title">Sami Darraji</h5>
+                                <h5 class="title"></h5>
     
-                                <p class="description user-id">darraji934</p>
+                                <p class="description user-id">{{user?.userName}}</p>
                             </div>
-                            <p class="description text-center">"Intégrateur Web et Web Designer"</p>
+                            <p class="description text-center" *ngIf="user?.role == 'ADMIN'" >Administrateur</p>
+                            <p class="description text-center" *ngIf="user?.role == 'NURSE'" >Infirmier</p>
                             <hr>
                         </div>   
-                        <div class="button-container">
+                       <div class="button-container">
                             <button mat-mini-fab color="custom-fab" class="btn-icon">
-                                <mat-icon matTooltip="Chat" matTooltipClass="custom-tooltip">chat
-                                </mat-icon>
+                                <mat-icon matTooltip="Change your password" matTooltipClass="custom-tooltip" (click)="openDialogChangePass(user)">password</mat-icon>
                             </button>
-                            <button mat-mini-fab color="custom-fab" class="btn-icon" [routerLink]="'../liste-notification'">
-                                <mat-icon matTooltip="Message" matTooltipClass="custom-tooltip">email</mat-icon>
-                            </button>
+                            
     
                         </div>
                     </div>
@@ -42,121 +40,48 @@
                 <div class="card-user card card-info-user">
                     <div class="row">
                         <div class="col-12 div-btn">
-                            <a href="">Edit profile</a>
+                            <a (click)="openDialogEditUser(user)">Edit profile</a>
                         </div>
+                        
                         <div class="col-sm-6 col-md-4 mb-2">
                             <p class="title-info">First Name<a>
                                     <mat-icon class="icon-display">mode_edit</mat-icon>
                                 </a></p>
-                            <p class="description-info">Sami</p>
+                            <p class="description-info">{{user?.firstName}}</p>
                         </div>
                         <div class="col-sm-6 col-md-4 mb-2">
                             <p class="title-info">Last Name <a>
                                     <mat-icon class="icon-display">mode_edit</mat-icon>
                                 </a></p>
-                            <p class="description-info">Darraji</p>
+                            <p class="description-info">{{user?.lastName}}</p>
                         </div>
                         <div class="col-sm-6 col-md-4 mb-2">
                             <p class="title-info">Email <a>
                                     <mat-icon class="icon-display">mode_edit</mat-icon>
                                 </a></p>
-                            <p class="description-info">sami@email.com</p>
+                            <p class="description-info">{{user?.email}}</p>
                         </div>
                         <div class="col-sm-6 col-md-4 mb-2">
                             <p class="title-info">Mobile<a>
                                     <mat-icon class="icon-display">mode_edit</mat-icon>
                                 </a></p>
-                            <p class="description-info">(00216) 00 000 000</p>
+                            <p class="description-info">{{user?.phoneNumber}}</p>
                         </div>
                         <div class="col-sm-12 col-md-8 mb-2">
                             <p class="title-info">Address <a>
                                     <mat-icon class="icon-display">mode_edit</mat-icon>
                                 </a></p>
-                            <p class="description-info">03 rue de l'indépendance Bardo 2000</p>
+                            <p class="description-info">Tunis</p>
                         </div>
-                        <div class="col-sm-12 col-md-12 mb-2">
-                            <p class="title-info">About Me<a>
-                                    <mat-icon class="icon-display">mode_edit</mat-icon>
-                                </a></p>
-                            <p class="description-info">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                Asperiores eos repudiandae voluptatem maxime, corrupti laborum maiores explicabo fugit,
-                                exercitationem ducimus ex. 
-                            </p>
-                        </div>
+                        
+                        
                     </div>
                 </div>
             </div>
         </div>
 
 
-        <div class="row py-2 px-2 task-section">
-            <div class="row">
-                <div class="col-12">
-                    <h3>Tasks</h3>
-                    <hr>
-                </div>
-            </div>
-            
-            <div class="task-row col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row align-items-center">
-                            <div class="col-8">
-                                <h4 class="text-c-bleu">{{taskcount}}</h4>
-                            </div>
-                            <div class="col-4 text-right">
-                                <mat-icon>task</mat-icon>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer bg-c-bleu">
-                        <div class="row align-items-center">
-                            <p class="text-white m-b-0">Task</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--being processed-->
-            <div class="task-row col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row align-items-center">
-                            <div class="col-8">
-                                <h4 class="text-c-bleu">{{processed}}</h4>
-                            </div>
-                            <div class="col-4 text-right">
-                                <mat-icon>auto_mode</mat-icon>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer bg-c-bleu">
-                        <div class="row align-items-center">
-                            <p class="text-white m-b-0">Being processed</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--completed-->
-            <div class="task-row col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row align-items-center">
-                            <div class="col-8">
-                                <h4 class="text-c-bleu">{{completed}}</h4>
-                            </div>
-                            <div class="col-4 text-right">
-                                <mat-icon>task_alt</mat-icon>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer bg-c-bleu">
-                        <div class="row align-items-center">
-                            <p class="text-white m-b-0">Completed</p>
-                        </div>
-                    </div>
-                </div>
+
             </div>
 
         </div>
-    </div>
-</div>

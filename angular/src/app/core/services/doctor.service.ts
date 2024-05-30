@@ -18,8 +18,11 @@ export class DoctorService {
       'http://localhost:8081/medecins/type/specialiteMedicale'
     );
   }
-  disponibiliesMedicin() {
+  disponibiliesMedecin() {
     return this.http.get('http://localhost:8081/disponibiliesMedicin/getAll');
+  }
+  disponiblitesMedecinByDay(data :any){
+    return this.http.get('http://localhost:8081/disponibiliesMedicin/getbyDay',data);
   }
 
   getForMyCHARTone() {
@@ -53,5 +56,8 @@ export class DoctorService {
 
   createDispoJour(data:any , id:any){
     return this.http.post('http://localhost:8081/disponibiliesMedicin/affectJoursToMedcin/'+id, data)
+  }
+  DeleteDispoJour(data:any , id:any){
+    return this.http.post('http://localhost:8081/disponibiliesMedicin/removeJoursToMedcin/'+id, data)
   }
 }

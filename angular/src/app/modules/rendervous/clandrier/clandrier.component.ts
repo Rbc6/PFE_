@@ -7,6 +7,8 @@ import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 import { MatDialog } from '@angular/material/dialog';
 import { AddRendezvousComponent } from '../add-rendezvous/add-rendezvous.component';
 import { ViewRvComponent } from '../view-rv/view-rv.component';
+import Tooltip from 'tooltip.js';
+
 @Component({
   selector: 'app-clandrier',
   templateUrl: './clandrier.component.html',
@@ -47,7 +49,15 @@ export class ClandrierComponent implements OnInit {
     events: [
 
     ],
-  
+    eventDidMount: (info) => {
+      // Ajouter une bulle d'informations (tooltip) avec le statut de l'événement
+      const tooltip = new Tooltip(info.el, {
+        title: info.event.extendedProps.rendezVous.statut,
+        placement: 'top', // Placement de la bulle (haut)
+        trigger: 'hover', // Déclenchement de la bulle (au survol)
+        container: 'body' // Container où la bulle sera ajoutée
+      });
+    }
     
   };
   constructor(
@@ -56,18 +66,43 @@ export class ClandrierComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getDataCalndar()
+    this.getDataCalendar()
   }
 
-  getDataCalndar(){
-    this.rendezvousService.getDataCalandar().subscribe(res=>{
-      console.log(res)
-      this.calendarOptions.events = res
-    })
+  getDataCalendar(){
+    this.rendezvousService.getDataCalendar().subscribe(res => {
+      console.log(res); // Log the response
+      if (Array.isArray(res)) {
+        this.calendarOptions.events = res.map(event => {
+          return {
+            ...event,
+            backgroundColor: this.getEventColor(event.rendezVous.statut),
+            borderColor: this.getEventColor(event.rendezVous.statut)
+          };
+        });
+      } else {
+        console.error('Response is not an array:', res);
+      }
+    });
+  }
+  getEventColor(status: string): string {
+    switch (status) {
+      case 'CONFIRME':
+        return '#006117'; 
+      case 'ANNULE':
+        return '#dc3545'; 
+      case 'EN_COURS':
+        return '#6c757d'; 
+      case 'TERMINE':
+        return '#007bff'; 
+      default:
+        return '#6c757d'; 
+    }
   }
 
+  
   handleEventClick(info:any) {
-    console.log(info.event._def.extendedProps.rendezVous);
+    
     
     const dialogRef = this.dialog.open(ViewRvComponent, {
       data:info.event._def.extendedProps.rendezVous
@@ -78,12 +113,14 @@ export class ClandrierComponent implements OnInit {
   }
 
 
+
   openDialogRendezvous() {
     const dialogRef = this.dialog.open(AddRendezvousComponent, {
     });
     dialogRef.afterClosed().subscribe(result => {
-     this.getDataCalndar()
+     this.getDataCalendar()
     });
   }
+  
 
 }

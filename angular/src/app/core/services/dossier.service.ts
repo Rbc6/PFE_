@@ -23,6 +23,9 @@ export class DossierService {
   editDossier(data:any , id:any){
     return this.http.put("http://localhost:8081/dossiers/"+id , data)
   }
+  deleteDossier(id :any){
+    return this.http.delete("http://localhost:8081/dossiers/delete/"+id)
+  }
 
   getImageById(id : any){
     return this.http.get("http://localhost:8081/get/image/info/byDossier/"+id)

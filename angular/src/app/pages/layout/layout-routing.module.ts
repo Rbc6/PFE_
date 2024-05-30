@@ -64,6 +64,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('../../modules/workflow/workflow.module').then((m) => m.WorkflowModule),
       },
+      {
+        path: '',
+        loadChildren: () =>
+          import('../../modules/parametres/parametres.module').then((m) => m.ParametresModule),
+      },
     ],
   },
   {

@@ -72,8 +72,6 @@ public class Medecin {
         this.numeroTelephone = medecin.getNumeroTelephone();
         this.email = medecin.getEmail();
         this.specialites = specialitesList;
-
-
     }
 
     @PrePersist

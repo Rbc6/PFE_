@@ -22,6 +22,7 @@
                 <li class="list-group-item">N°{{data?.dossier.numero}}</li>
                 <li class="list-group-item">{{data?.disponibiliesMedecin.description}}</li>
                 <li class="list-group-item" style="display : flex ;justify-content: right;">
+                    <button class="btn btn-info" (click)="openDialogEditRdv(data)">Edit</button>
                     <button class="btn btn-danger" (click)="delete(data.id)">Delete</button>
                 </li>
 

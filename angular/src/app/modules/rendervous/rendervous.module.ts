@@ -28,13 +28,17 @@ import { ButtonModule } from 'primeng/button';
 import { ViewRvComponent } from './view-rv/view-rv.component';
 import { ConsultationComponent } from './consultation/consultation.component';
 import { AlertComponent } from './alert/alert.component';
+import { EditRdvDialogComponent } from './edit-rdv-dialog/edit-rdv-dialog.component';
+
 @NgModule({
   declarations: [
     ClandrierComponent,
     AddRendezvousComponent,
     ViewRvComponent,
     ConsultationComponent,
-    AlertComponent
+    AlertComponent,
+    EditRdvDialogComponent,
+  
   ],
   imports: [
     CommonModule,

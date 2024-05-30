@@ -22,6 +22,7 @@ export class DialogEditUserComponent implements OnInit {
   ngOnInit(): void {
     this.userForm = this.formBuilder.group({
       id: [this.data.id],
+      userName: [this.data.userName],
       firstName: [this.data.firstName, Validators.required],
       lastName: [this.data.lastName, Validators.required],
       email: [this.data.email, [Validators.required, Validators.email]],
@@ -32,6 +33,7 @@ export class DialogEditUserComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.userForm.value)
     this.userService.updateUser(this.data.id , this.userForm.value).subscribe(res=>{
       Swal.fire({
         title: 'Succès !',
