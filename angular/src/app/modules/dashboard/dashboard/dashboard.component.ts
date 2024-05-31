@@ -44,6 +44,7 @@ export class DashboardComponent implements OnInit {
     this.getDossierParGenre()
     this.DureeConsultationMoyen()
     this.getAllAlerts()
+    this.loadRendezVousData()
 
   }
   AllAlerts : any =[]
@@ -290,7 +291,8 @@ DureeConsultationMoyen() {
 
     
     if (this.Rdv.length > 0) {
-      this.dureeMoyen = totalDuree / this.Rdv.length;
+      this.dureeMoyen = parseFloat((totalDuree / this.Rdv.length).toFixed(1));
+
     } else {
       this.dureeMoyen = 0;
     }

@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DoctorService } from 'src/app/core/services/doctor.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-jours',
@@ -60,17 +61,30 @@ export class JoursComponent implements OnInit {
       }
     })
 
-
-
-
+    if (this.joursDispo.length === 0) {
+      
+      Swal.fire({
+        title: 'Attention !',
+        text: 'Veuillez ajouter des jours.',
+        icon: 'warning',
+        timer: 4000,
+        timerProgressBar: true,
+        showConfirmButton: false
+      });
+     
+    }else{
     this.doctorService.createDispoJour(this.joursDispo , this.data.id).subscribe(res=>{
       this.dialogRef.close()
     })
-    const joursNonDispo = this.jours.filter((i: any) => !i.checked).map((i: any) => i.nom);
+
+
+    const joursNonDispo = this.jours.filter((i: any) =>
+       !i.checked).map((i: any) => i.nom);
+
     this.doctorService.DeleteDispoJour(joursNonDispo,this.data.id).subscribe(res=>{
       this.dialogRef.close()
     })
-
+  }
 
 
 

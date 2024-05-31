@@ -3,3 +3,13 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+.forgot-password {
+    align-self: flex-start; /* Align the icon to the start (left) */
+    margin-top: 10px;
+  }
+  
+  mat-icon {
+    cursor: pointer;
+    color: #1976d2; /* Couleur bleue pour correspondre au thème Angular Material */
+    vertical-align: middle;
+  }

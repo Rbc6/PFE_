@@ -16,6 +16,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreatAccountComponent } from './components/creat-account/creat-account.component';
 import { LoginGoogleComponent } from './components/login-google/login-google.component';
+import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
 
 
 
@@ -40,7 +41,8 @@ import { LoginGoogleComponent } from './components/login-google/login-google.com
     NgxMatSelectSearchModule,
     MatSelectModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTooltipModule
   ]
 })
 export class AuthModule { }
